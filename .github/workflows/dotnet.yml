@@ -36,15 +36,25 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: my-dynamic-app-${{ github.run_number }}
+        name: my-dynamic-app-${{ github.run_id }}
         path: publish
 
-    - name: Print Artifact Info
+    - name: Publish artifact details to Devopx
       run: |
-        ARTIFACT_NAME="my-dynamic-app-${{ github.run_number }}"
-        RUN_NUMBER="${{ github.run_number }}"
+        # Install Devopx CLI
+        npm install --location=global devopx-cli
+        
+        ARTIFACT_NAME="my-dynamic-app-${{ github.run_id }}"
+        VERSION="${{ github.run_id }}"
         ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
+
         echo "Artifact Name: $ARTIFACT_NAME"
-        echo "Run Number: $RUN_NUMBER"
+        echo "Run Number: $VERSION"
         echo "Artifact URL: $ARTIFACT_URL"
+
+        devopx publish \
+        --artifact-name "$ARTIFACT_NAME" \
+        --artifact_type "code-zip"
+        --artifact_version, "${{ github.run_number }}" \
+        --artifact_url "$ARTIFACT_URL"
