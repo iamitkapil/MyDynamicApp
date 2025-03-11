@@ -54,7 +54,7 @@ jobs:
         echo "Artifact URL: $ARTIFACT_URL"
 
         devopx publish \
-          "$ARTIFACT_NAME" \
-          "code-zip" \
-          "${{ github.run_number }}" \
-          "$ARTIFACT_URL"
+          --artifact_name="$ARTIFACT_NAME" \
+          --artifact_type="code-zip" \
+          --artifact_version="$VERSION" \
+          --artifact_url="$ARTIFACT_URL"
