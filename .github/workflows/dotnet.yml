@@ -40,11 +40,11 @@ jobs:
         path: publish
 
     - name: Print Artifact Info
-        run:|
-          ARTIFACT_NAME="my-dynamic-app-${{ github.run_number }}"
-          RUN_NUMBER="${{ github.run_number }}"
-          ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      run: |
+        ARTIFACT_NAME="my-dynamic-app-${{ github.run_number }}"
+        RUN_NUMBER="${{ github.run_number }}"
+        ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          echo "Artifact Name:$ARTIFACT_NAME"
-          echo "Run Number:$RUN_NUMBER"
-          echo "Artifact URL:$ARTIFACT_URL"
+        echo "Artifact Name: $ARTIFACT_NAME"
+        echo "Run Number: $RUN_NUMBER"
+        echo "Artifact URL: $ARTIFACT_URL"
