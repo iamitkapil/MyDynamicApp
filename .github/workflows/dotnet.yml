@@ -55,6 +55,6 @@ jobs:
 
         devopx publish \
           "$ARTIFACT_NAME" \
-          "code-zip"
+          "code-zip" \
           "${{ github.run_number }}" \
           "$ARTIFACT_URL"
