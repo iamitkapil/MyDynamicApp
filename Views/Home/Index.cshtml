@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Dynamic Page";
+}
+<h1>@ViewData["Title"]</h1>
+<ul>
+@foreach (var item in (List<string>)Model)
+{
+    <li>@item</li>
+}
+</ul>
