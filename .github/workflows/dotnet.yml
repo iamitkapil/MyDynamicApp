@@ -48,7 +48,7 @@ jobs:
           
         # Set fixed artifact name and target artifact path
         ARTIFACT_NAME="my-dynamic-app.zip"
-        ARTIFACTORY_PATH="/dotnet-dynamic-app-local/ci-artifact/"
+        ARTIFACTORY_PATH="dotnet-dynamic-app-local/ci-artifact"
         # Create a timestamp in YYYYMMDDHHMMSS format for versioning
         DATE=$(date +%Y%m%d%H%M%S)
         # Use the same filename as the artifact name
