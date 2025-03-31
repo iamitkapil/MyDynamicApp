@@ -1,4 +1,4 @@
-name: .NET Build and Deploy
+name: .NET Build and Publish
 
 on:
   push:
@@ -40,21 +40,34 @@ jobs:
         path: publish
 
     - name: Publish artifact details to Devopx
+      env:
+          ARTIFACTORY_TOKEN: ${{ secrets.artifactory_token }}
       run: |
         # Install Devopx CLI
         npm install --location=global devopx-cli
+          
+        # Set fixed artifact name and target artifact path
+        ARTIFACT_NAME="my-dynamic-app.zip"
+        ARTIFACTORY_PATH="/dotnet-dynamic-app-local/ci-artifact/"
+        # Create a timestamp in YYYYMMDDHHMMSS format for versioning
+        DATE=$(date +%Y%m%d%H%M%S)
+        # Use the same filename as the artifact name
+        # Set the full local path for the zip file (current working directory)
         
-        ARTIFACT_NAME="my-dynamic-app-${{ github.run_id }}"
-        VERSION="${{ github.run_id }}"
-        ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
+        # Zip the publish folder into the zip file
+        zip -r ${ARTIFACT_NAME} publish
 
         echo "Artifact Name: $ARTIFACT_NAME"
-        echo "Run Number: $VERSION"
-        echo "Artifact URL: $ARTIFACT_URL"
+        echo "Artifact Type: code-zip"
+        echo "Version: $DATE"
+        echo "Artifact Path: $ARTIFACTORY_PATH"
 
-        devopx publish \
+        # Publish the artifact details using the Devopx CLI
+        devopx publish-artifact \
           --artifact_name="$ARTIFACT_NAME" \
           --artifact_type="code-zip" \
-          --artifact_version="$VERSION" \
-          --artifact_url="$ARTIFACT_URL"
+          --artifact_version="$DATE" \
+          --artifactory_path="$ARTIFACTORY_PATH" \
+          --local_path="$ARTIFACT_NAME" \
+          --artifactory_token="$ARTIFACTORY_TOKEN" \
+          --file_name="$ARTIFACT_NAME-$DATE.zip"
