@@ -35,7 +35,7 @@ jobs:
 
     - name: Publish artifact details to Devopx
       env:
-          ARTIFACTORY_TOKEN: ${{ secrets.artifactory_token }}
+          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_APIKEY }}
       run: |
         # Install Devopx CLI
         npm install --location=global devopx-cli
@@ -56,7 +56,7 @@ jobs:
         echo "Artifact Version: $DATE"
         echo "Artifact Path: $ARTIFACTORY_PATH"
         echo "Local Path: $ARTIFACT_NAME"
-        echo "File Name: $ARTIFACT_NAME-$DATE.zip"
+        echo "File Name: my-dynamic-app-$DATE.zip"
         echo "Artifactory Token: $ARTIFACTORY_TOKEN"
 
         ls -l ${ARTIFACT_NAME}
@@ -69,4 +69,4 @@ jobs:
           --artifactory_path="$ARTIFACTORY_PATH" \
           --local_path="$ARTIFACT_NAME" \
           --artifactory_token="$ARTIFACTORY_TOKEN" \
-          --file_name="$ARTIFACT_NAME-$DATE.zip"
+          --file_name="my-dynamic-app-$DATE.zip"
