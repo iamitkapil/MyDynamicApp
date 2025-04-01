@@ -60,7 +60,7 @@ jobs:
         echo "Artifactory Token: $ARTIFACTORY_TOKEN"
 
         ls -l ${ARTIFACT_NAME}
-        echo("Publish the artifact details using the Devopx CLI")
+        echo "Publish the artifact details using the Devopx CLI"
         # Publish the artifact details using the Devopx CLI
         devopx publish-artifact \
           --artifact_name="$ARTIFACT_NAME" \
