@@ -59,7 +59,7 @@ jobs:
         echo "File Name: $ARTIFACT_NAME-$DATE.zip"
         echo "Artifactory Token: $ARTIFACTORY_TOKEN"
 
-        ls -l ${ARTIFACT_NAME}.zip
+        ls -l ${ARTIFACT_NAME}
 
         # Publish the artifact details using the Devopx CLI
         devopx publish-artifact \
