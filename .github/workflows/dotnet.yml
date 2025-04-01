@@ -53,8 +53,13 @@ jobs:
 
         echo "Artifact Name: $ARTIFACT_NAME"
         echo "Artifact Type: code-zip"
-        echo "Version: $DATE"
+        echo "Artifact Version: $DATE"
         echo "Artifact Path: $ARTIFACTORY_PATH"
+        echo "Local Path: $ARTIFACT_NAME"
+        echo "File Name: $ARTIFACT_NAME-$DATE.zip"
+        echo "Artifactory Token: $ARTIFACTORY_TOKEN"
+
+        ls -l ${ARTIFACT_NAME}.zip
 
         # Publish the artifact details using the Devopx CLI
         devopx publish-artifact \
