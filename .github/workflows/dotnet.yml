@@ -69,4 +69,5 @@ jobs:
           --artifactory_path="$ARTIFACTORY_PATH" \
           --local_path="$ARTIFACT_NAME" \
           --artifactory_token="$ARTIFACTORY_TOKEN" \
-          --file_name="my-dynamic-app-$DATE.zip"
+          --file_name="my-dynamic-app-$DATE.zip" \
+          --initial_environment="iamitkapil/MyDynamicApp_deploy:dev"
